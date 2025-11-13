@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="author"/>
                 <field name="isbn"/>
+                <!-- <field name="description"/> -->
             </list>
         </field>
     </record>
@@ -23,6 +24,8 @@
                         <field name="author"/>
                         <field name="isbn"/>
                         <field name="description"/>
+                        <field name="pages"></field>
+                        <field name="publication_date"></field>
                     </group>
                 </sheet>
             </form>

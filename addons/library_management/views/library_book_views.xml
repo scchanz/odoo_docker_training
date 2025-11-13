@@ -38,3 +38,6 @@
     <menuitem id="menu_library_root" name="Library"/>
     <menuitem id="menu_library_book" name="Books" parent="menu_library_root" action="action_library_book"/>
 </odoo>
+
+
+<!-- hello -->

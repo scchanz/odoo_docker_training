@@ -8,6 +8,8 @@
                 <field name="name"/>
                 <field name="author"/>
                 <field name="isbn"/>
+                <field name="genre"/>
+                <field name="available"/>
             </list>
         </field>
     </record>
@@ -16,16 +18,42 @@
         <field name="name">library.book.form</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Library Book">
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="author"/>
                         <field name="isbn"/>
-                        <field name="description"/>
+                        <field name="genre" widget="radio"/>
+                    </group>
+                    <group>
+                        <field name="publication_date"/>
+                        <field name="pages"/>
+                        <field name="available" widget="boolean_toggle"/>
+                    </group>
+                    <group>
+                        <field name="description" colspan="2"/>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_library_book_search" model="ir.ui.view">
+        <field name="name">library.book.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search string="Search Books">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="isbn"/>
+                <field name="genre" filter_domain="[('genre', '=', self)]"/>
+                <filter string="Available" name="available" domain="[('available', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Genre" name="group_genre" context="{'group_by': 'genre'}"/>
+                    <filter string="Author" name="group_author" context="{'group_by': 'author'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
@@ -33,8 +61,12 @@
         <field name="name">Books</field>
         <field name="res_model">library.book</field>
         <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_library_book_search"/>
     </record>
 
     <menuitem id="menu_library_root" name="Library"/>
     <menuitem id="menu_library_book" name="Books" parent="menu_library_root" action="action_library_book"/>
 </odoo>
+
+
+<!-- hello -->
